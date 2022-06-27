@@ -20,10 +20,10 @@ loop_guard = "0.1.4"
 use::loop_guard::LoopGuard;
 
 fn main () {
-    let guard = LoopGuard::new(100);
+    let guard = LoopGuard::new(100).set_message("My function failed here!");
 
     loop {
-        guard.protect() // This will panic after 100 runs of the loop
+        guard.protect(); // This will panic after 100 runs of the loop
     };
 }
 ```
