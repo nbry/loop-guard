@@ -15,9 +15,10 @@ impl LoopGuard {
     /// ## Arguments
     /// * `max_ticks` - The limit of how many times a loop should run
     ///
-    /// ## Example
-    /// ```
-    /// let guard = LoopGuard::new(100);
+    /// ```should_panic
+    /// use loop_guard::LoopGuard;
+    ///
+    /// let mut guard = LoopGuard::new(10);
     ///
     /// loop {
     ///     guard.protect() // This panic after 10 loops
@@ -32,12 +33,6 @@ impl LoopGuard {
 
     /// From within a `while` or `loop` block, panic if the loop iteration
     /// surpasses the LoopGuard's `max_ticks` value.
-    /// ```
-    /// ...
-    /// loop {
-    ///     guard.protect() // This panic after 10 loops
-    /// }
-    /// ```
     pub fn protect(&mut self) {
         self.count += 1;
         if self.count > self.max_ticks {

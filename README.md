@@ -1,5 +1,8 @@
 # LoopGuard
 
+[![Crate](https://img.shields.io/crates/v/loop-guard.svg)](https://crates.io/crates/loop-guard)
+[![Test Status](https://github.com/nbry/loop-guard/actions/workflows/test-status.yml/badge.svg)](https://github.com/nbry/loop-guard/actions/workflows/test-status.yml)
+
 Simple development utility to prevent infinite loops.
 
 ## Installation
@@ -8,7 +11,7 @@ Add this to your `Cargo.toml`:
 
 ```
 [dev-dependencies]
-loop_guard = "0.1.2"
+loop_guard = "0.1.4"
 ```
 
 ## Usage
