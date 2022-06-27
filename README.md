@@ -8,7 +8,7 @@ Add this to your `Cargo.toml`:
 
 ```
 [dev-dependencies]
-loop_guard = "1.0.0"
+loop_guard = "0.1.2"
 ```
 
 ## Usage
