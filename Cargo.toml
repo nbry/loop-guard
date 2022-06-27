@@ -1,8 +1,11 @@
 [package]
 name = "loop-guard"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
+license = "MIT"
+documentation= "https://github.com/nbry/loop-guard"
+homepage = "https://github.com/nbry/loop-guard"
+repository = "https://github.com/nbry/loop-guard"
+description = """
+A dev dependency for preventing infinte loops.
+"""
