@@ -16,7 +16,7 @@ loop_guard = "1.0.0"
 
 ## Usage
 
-```
+```rust
 use loop_guard::LoopGuard;
 
 fn main() {
