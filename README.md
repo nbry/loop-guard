@@ -10,8 +10,8 @@ Simple development utility to prevent infinite loops.
 Add this to your `Cargo.toml`:
 
 ```
-[dev-dependencies]
-loop_guard = "0.1.4"
+[dependencies]
+loop_guard = "1.0.0"
 ```
 
 ## Usage
