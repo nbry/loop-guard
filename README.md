@@ -17,15 +17,38 @@ loop_guard = "0.1.4"
 ## Usage
 
 ```
-use::loop_guard::LoopGuard;
+use loop_guard::LoopGuard;
 
-fn main () {
-    let guard = LoopGuard::new(100).set_message("My function failed here!");
+fn main() {
+    // This LoopGuard instance will prevent a loop from running more than 50 times.
+    let mut guard = LoopGuard::new(50);
 
+    // However, this for loop won't cause a panic, because it only loops 10 times.
+    for _i in 0..10 {
+        guard.protect()
+    }
+
+    // There isn't a way to "reset" a guard instance
+    // If you need another guarded loop, create a new instance of LoopGuard
+    // We'll make a new instance, this time with a custom panic message
+
+    let mut guard_2 = LoopGuard::new(100).set_panic_message("Oh no! This failed!");
+
+    // This (infinite) loop is protected by guard_2, and will panic after 100 runs
     loop {
-        guard.protect(); // This will panic after 100 runs of the loop
-    };
+        guard_2.protect();
+    }
 }
+```
+
+Run this code:
+```
+$ cargo run
+```
+
+Result:
+```
+thread 'main' panicked at 'Oh no! This failed!', ...
 ```
 
 ...that's pretty much about it.

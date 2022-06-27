@@ -1,11 +1,9 @@
 /// Utility for preventing infinite loops
 ///
-/// Use as a guard rail inside a `loop` or `while` block
-///
-/// Meant to be used as a development dependency
+/// Use as a guard rail inside a loop block
 pub struct LoopGuard {
-    pub max_ticks: i32,
-    pub count: i32,
+    max_ticks: i32,
+    count: i32,
     message: String,
 }
 
@@ -34,8 +32,8 @@ impl LoopGuard {
     }
 
     /// Set a custom panic message for a LoopGuard instance
-    pub fn set_message(mut self, message: &str) -> Self {
-        self.message = message.to_string();
+    pub fn set_panic_message(mut self, message: &str) -> Self {
+        self.message = String::from(message);
         self
     }
 
@@ -63,8 +61,20 @@ fn infinite_loop_with_guard() {
 }
 
 #[test]
+#[should_panic(expected = "Infinite Loop 2: Electric Boogaloo")]
+fn infinite_loop_with_guard_with_custom_message() {
+    // Arrange
+    let mut guard = LoopGuard::new(10).set_panic_message("Infinite Loop 2: Electric Boogaloo");
+
+    // Act
+    loop {
+        guard.protect();
+    }
+}
+
+#[test]
 #[should_panic(expected = "Max number of ticks reached")]
-fn loop_surpasses_max_ticks_with_guard() {
+fn for_loop_surpasses_max_ticks() {
     // Arrange
     let mut guard = LoopGuard::new(10);
 
@@ -75,24 +85,12 @@ fn loop_surpasses_max_ticks_with_guard() {
 }
 
 #[test]
-fn loop_within_max_count_of_guard() {
+fn for_loop_does_not_surpass_max_ticks() {
     // Arrange
     let mut guard = LoopGuard::new(10);
 
-    // Act - does not panic
+    // Act - Does not panic, since loop is within 10 ticks
     for _i in 0..10 {
-        guard.protect();
-    }
-}
-
-#[test]
-#[should_panic(expected = "Infinite Loop 2: Electric Boogaloo")]
-fn infinite_loop_with_guard_and_custom_message() {
-    // Arrange
-    let mut guard = LoopGuard::new(10).set_message("Infinite Loop 2: Electric Boogaloo");
-
-    // Act
-    loop {
         guard.protect();
     }
 }
