@@ -5,6 +5,8 @@
 
 Simple development utility to prevent infinite loops.
 
+Honestly, I made this crate solely to practice with cargo
+
 ## Installation
 
 Add this to your `Cargo.toml`:
